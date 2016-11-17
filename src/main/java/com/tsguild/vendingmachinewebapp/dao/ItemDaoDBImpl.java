@@ -54,7 +54,7 @@ public class ItemDaoDBImpl implements ItemDao {
                 item.getCost(),
                 item.getQuantity());
         
-        item.setId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+//        item.setId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         
         return item;
     }
