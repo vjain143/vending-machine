@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ItemDaoDBImpl implements ItemDao {
 
     private static final String SQL_INSERT_ITEM = 
-            "insert into Items (name, cost, quantity) values (?, ?, ?)";
+            "insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id";
     
     private static final String SQL_DELETE_ITEM =
             "delete from Items where id = ?";
@@ -49,12 +49,12 @@ public class ItemDaoDBImpl implements ItemDao {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Item addItem(Item item) {
-        jdbcTemplate.update(SQL_INSERT_ITEM,
+        int insertedId = jdbcTemplate.update(SQL_INSERT_ITEM,
                 item.getName(),
                 item.getCost(),
                 item.getQuantity());
         
-//        item.setId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+        item.setId(insertedId);
         
         return item;
     }
