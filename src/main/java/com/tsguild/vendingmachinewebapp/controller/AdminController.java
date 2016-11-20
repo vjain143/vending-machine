@@ -24,16 +24,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author Jimmy Cook
  */
 @Controller
-public class HomeController {
+public class AdminController {
     
     private ItemDao dao;
     
     @Inject
-    public HomeController(ItemDao dao){
+    public AdminController(ItemDao dao){
         this.dao = dao;
     }
     
-    @RequestMapping(value={"home"}, method = RequestMethod.GET)
+    @RequestMapping(value= "home", method = RequestMethod.GET)
     public String displayHomePage(){
         return "home";
     }

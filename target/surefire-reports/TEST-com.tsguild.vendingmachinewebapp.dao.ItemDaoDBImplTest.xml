@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" time="2.438" errors="14" skipped="0">
+<testsuite tests="15" failures="0" name="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" time="2.128" errors="14" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64"/>
@@ -62,15 +62,17 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddMultipleItems" time="1.078">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddMultipleItems" time="1.024">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -118,7 +120,7 @@
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -130,38 +132,37 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:06 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@34033bd0: startup date [Wed Nov 16 20:42:06 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:06 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:54 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@34033bd0: startup date [Sat Nov 19 16:23:54 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:54 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
-Nov 16, 2016 8:42:07 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+Nov 19, 2016 4:23:54 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
-Nov 16, 2016 8:42:07 PM org.springframework.jdbc.support.SQLErrorCodesFactory &lt;init&gt;
+Nov 19, 2016 4:23:55 PM org.springframework.jdbc.support.SQLErrorCodesFactory &lt;init&gt;
 INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAgainstEmptyDAO" time="0.109"/>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountOnUpdate" time="0.154">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAgainstEmptyDAO" time="0.093"/>
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountOnUpdate" time="0.121">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -209,7 +210,7 @@ INFO: SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Orac
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -221,33 +222,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:07 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@51f116b8: startup date [Wed Nov 16 20:42:07 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:07 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7690781: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testUpdateItem" time="0.121">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testUpdateItem" time="0.093">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -295,7 +295,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -307,33 +307,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:07 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@73700b80: startup date [Wed Nov 16 20:42:07 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:07 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@483f6d77: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemsAfterRemovalOfNonExistent" time="0.089">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemsAfterRemovalOfNonExistent" time="0.084">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -381,7 +380,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -393,33 +392,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4803b726: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@32502377: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountOnAddition" time="0.098">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountOnAddition" time="0.084">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -467,7 +465,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -479,33 +477,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@55a147cc: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2e385cce: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddOneItem" time="0.064">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddOneItem" time="0.077">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -553,7 +550,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -565,33 +562,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@413d1baf: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@710c2b53: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveItemTwice" time="0.108">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveItemTwice" time="0.074">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -639,7 +635,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -651,33 +647,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5745ca0e: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@72c8e7b: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveOneItem" time="0.06">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveOneItem" time="0.072">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -725,7 +720,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -737,33 +732,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3e0e1046: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2d29b4ee: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveItemsMultipleTimes" time="0.065">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveItemsMultipleTimes" time="0.077">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -811,7 +805,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -823,33 +817,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7d61eb55: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@264f218: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testUpdateMultipleItems" time="0.09">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testUpdateMultipleItems" time="0.082">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -897,7 +890,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -909,33 +902,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@7b993c65: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2e32ccc5: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddSimilarItems" time="0.074">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddSimilarItems" time="0.059">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -983,7 +975,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -995,33 +987,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@34f6515b: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3e2059ae: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountAfterTwiceRemoved" time="0.076">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountAfterTwiceRemoved" time="0.073">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1069,7 +1060,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -1081,33 +1072,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4416d64f: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:55 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@48d61b48: startup date [Sat Nov 19 16:23:55 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:55 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountAfterRemoval" time="0.136">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testItemCountAfterRemoval" time="0.054">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1155,7 +1145,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -1167,33 +1157,32 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@600b9d27: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:56 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4671115f: startup date [Sat Nov 19 16:23:56 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:56 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
-  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveMultipleItems" time="0.116">
-    <error message="PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [insert into Items (name, cost, quantity) values (?, ?, ?) RETURNING id]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
-	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:231)
+  <testcase classname="com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImplTest" name="testAddAndRemoveMultipleItems" time="0.061">
+    <error message="StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist" type="org.springframework.jdbc.BadSqlGrammarException">org.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [select LASTVAL()]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:91)
 	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:645)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:927)
-	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:937)
-	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:52)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:415)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:470)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:480)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:490)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:496)
+	at com.tsguild.vendingmachinewebapp.dao.ItemDaoDBImpl.addItem(ItemDaoDBImpl.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1241,7 +1230,7 @@ INFO: Loading XML bean definitions from class path resource [test-applicationCon
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;RETURNING id&apos; at line 1
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: FUNCTION VendingMachineTest.LASTVAL does not exist
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -1253,21 +1242,18 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have a
 	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3783)
 	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2447)
 	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2594)
-	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2545)
-	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1901)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2113)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2049)
-	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2034)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.apache.commons.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:98)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:873)
-	at org.springframework.jdbc.core.JdbcTemplate$2.doInPreparedStatement(JdbcTemplate.java:866)
-	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:629)
-	... 51 more
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2541)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2499)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1432)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:207)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:454)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:404)
+	... 52 more
 </error>
-    <system-err>Nov 16, 2016 8:42:08 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
-INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@291a7e3c: startup date [Wed Nov 16 20:42:08 EST 2016]; root of context hierarchy
-Nov 16, 2016 8:42:08 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+    <system-err>Nov 19, 2016 4:23:56 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@66c61024: startup date [Sat Nov 19 16:23:56 EST 2016]; root of context hierarchy
+Nov 19, 2016 4:23:56 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [test-applicationContext.xml]
 </system-err>
   </testcase>
